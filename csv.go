@@ -27,7 +27,7 @@ func csv2float(r io.Reader, column int) ([]float64, error) {
 	cr := csv.NewReader(r)
 	column--
 
-	Data, err := cr.ReadAll()
+	allData, err := cr.ReadAll()
 
 	if err != nil {
 		return nil, fmt.Errorf("cannot read data from file: %w", err)
@@ -35,7 +35,7 @@ func csv2float(r io.Reader, column int) ([]float64, error) {
 
 	var data []float64
 
-	for i, row := range Data {
+	for i, row := range allData {
 		if i == 0 {
 			continue
 		}

@@ -22,13 +22,13 @@ func TestOperations(t *testing.T) {
 		operation statsFunc
 		exp []float64
 	} {
-		{"Sum", sum, []float64{300, 85.927, -30, 436}},
-		{"Avg", avg, []float64{37.5, 6.609769230769231, -15, 72.666666666666666}},
+		{"it adds values in column", sum, []float64{300, 85.927, -30, 436}},
+		{"it finds the average of values in column", avg, []float64{37.5, 6.609769230769231, -15, 72.666666666666666}},
 	}
 
 	for _, tc := range testCases {
 		for k, exp := range tc.exp {
-			name := fmt.Sprintf("%sData%d", tc.name, k)
+			name := fmt.Sprintf("%s %d", tc.name, k)
 			t.Run(name, func (t *testing.T)  {
 				res := tc.operation(data[k])
 
@@ -101,7 +101,7 @@ func TestCSV2Float(t *testing.T) {
 				if err == nil {
 					t.Errorf("Expected error. Got nil instead")
 				}
-				if ! errors.Is(err, tc.expErr) {
+				if !errors.Is(err, tc.expErr) {
 					t.Errorf("Expected error %q, got %q instead", tc.expErr, err)
 				}
 
